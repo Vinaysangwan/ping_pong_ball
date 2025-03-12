@@ -1,7 +1,11 @@
 #pragma once
 
 #include "../common.hpp"
+
+// Include Entities
 #include "../entity/Player.hpp"
+#include "../entity/Enemy.hpp"
+#include "../entity/Ball.hpp"
 
 class Game
 {
@@ -12,6 +16,8 @@ private:
     void init_Variables();
     void init_Window();
     void init_Player();
+    void init_Enemy();
+    void init_Ball();
 
 public:
     // Public Functions
@@ -40,4 +46,10 @@ private:
 
     // Player
     Player *player;
+
+    // Enemy
+    Enemy *enemy;
+
+    // Ball
+    Ball *ball;
 };

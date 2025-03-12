@@ -31,20 +31,40 @@ void Game::init_Player()
     this->player = new Player();
 }
 
+// Init Enemy
+void Game::init_Enemy()
+{
+    this->enemy = new Enemy();
+}
+
+// Init Ball
+void Game::init_Ball()
+{
+    this->ball = new Ball();
+}
+
 // Constructor
 Game::Game()
 {
     this->init_Variables();
     this->init_Window();
+
+    // Init Entity
     this->init_Player();
+    this->init_Enemy();
+    this->init_Ball();
 }
 
 // Destructor
 Game::~Game()
 {
     delete this->window;
-    delete this->player;
     delete this->game_clock;
+
+    // Delete Entity
+    delete this->player;
+    delete this->enemy;
+    delete this->ball;
 }
 
 bool Game::running() const
@@ -99,6 +119,8 @@ void Game::render()
 
     // Draw Objects
     this->player->render_Player(this->window);
+    this->enemy->render_Enemy(this->window);
+    this->ball->render_Ball(this->window);
 
     this->window->display();
 }
