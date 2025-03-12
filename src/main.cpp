@@ -1,9 +1,18 @@
-#include "sdl/Game.h"
+#include "core/Game.hpp"
 
 int main()
 {
     Game *game = new Game();
-    game->run();
+
+    // Game Loop
+    while (game->running())
+    {
+        game->update();
+
+        game->render();
+    }
+
+    delete game;
 
     return 0;
 }

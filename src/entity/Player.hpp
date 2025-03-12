@@ -1,0 +1,37 @@
+#pragma once
+
+#include "../common.hpp"
+
+class Player
+{
+private:
+    // Private Functions
+
+    // Init Functions
+    void init_Variables();
+    void init_Player();
+
+    // Player Movement
+    void player_Movement(float delta_time);
+
+public:
+    // Public Functions
+
+    Player();
+    ~Player();
+
+    // Main Player Functions
+    void update_Player(float delta_time);
+    void render_Player(sf::RenderWindow *window);
+
+private:
+    // Private Members
+
+    // Player Variable
+    sf::RectangleShape *player;
+    sf::Vector2f player_size;
+    sf::Color player_color;
+
+    // Player Stats
+    float player_speed;
+};

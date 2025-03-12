@@ -1,26 +1,26 @@
 # Compiler
 CXX = g++
-CXXFLAGS = -I./include -std=c++20 -Wall -Wextra
+CXXFLAGS = -I./include -std=c++23 -Wall -Wextra
 
-# Source files
-SRC = src/main.cpp src/sdl/Game.cpp
-OBJ = main.o Game.o
+# Linker
+LDFLAGS = -L./lib -lsfml-window -lsfml-system -lsfml-graphics
 
-# Libraries
-LDFLAGS = -L./lib -lsfml-graphics -lsfml-window -lsfml-system
+# Object Files
+OBJ = output/main.o output/Game.o output/Player.o
 
-# Targets
+# Target
 all: compile link run
 
 compile:
-	$(CXX) $(CXXFLAGS) -c src/main.cpp -o main.o
-	$(CXX) $(CXXFLAGS) -c src/sdl/Game.cpp -o Game.o
+	$(CXX) $(CXXFLAGS) -c -o output/main.o src/main.cpp
+	$(CXX) $(CXXFLAGS) -c -o output/Game.o src/core/Game.cpp
+	$(CXX) $(CXXFLAGS) -c -o output/Player.o src/entity/Player.cpp
 
 link:
-	$(CXX) $(OBJ) -o main $(LDFLAGS)
+	$(CXX) $(CXXFLAGS) -o main $(OBJ) $(LDFLAGS)
 
 run:
 	./main.exe
 
 clean:
-	rm -f $(OBJ) main.exe
+	rm -rf ./output/*
