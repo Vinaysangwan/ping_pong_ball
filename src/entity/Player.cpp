@@ -47,11 +47,6 @@ void Player::player_Movement(float delta_time)
         request_player_movement += sf::Vector2f(1.0f, 0.0f);
     }
 
-    if (request_player_movement.x != 0 && request_player_movement.y != 0)
-    {
-        request_player_movement = MATH_HELPER::vectorNormalization(request_player_movement);
-    }
-
     this->player->move(request_player_movement * this->player_speed * delta_time);
 }
 

@@ -2,5 +2,3 @@
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
-
-#include "./helper/MathHelper.hpp"
