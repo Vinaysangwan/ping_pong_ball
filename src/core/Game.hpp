@@ -1,5 +1,6 @@
 #pragma once
 
+#include "../game_manager/GameManager.hpp"
 #include "../screen/Home.hpp"
 #include "../screen/Play.hpp"
 
@@ -11,7 +12,6 @@ private:
     // InitFunctions
     void init_Variables();
     void init_Window();
-    void initGameMode();
     void initHome();
     void initPlay();
 
@@ -43,15 +43,6 @@ private:
     // Time
     sf::Clock *game_clock;
     float delta_time;
-
-    // Game Mode
-    enum GameMode
-    {
-        home_screen,
-        play_screen,
-    };
-
-    GameMode e_game_mode;
 
     // Home Screen
     Home *home;

@@ -29,12 +29,6 @@ void Game::init_Window()
     this->window->setPosition(sf::Vector2i{this->window->getPosition().x, this->window->getPosition().y - 50});
 }
 
-// Init the Game Mode
-void Game::initGameMode()
-{
-    this->e_game_mode = home_screen;
-}
-
 // Init Home
 void Game::initHome()
 {
@@ -100,7 +94,7 @@ void Game::poll_Event()
 
             if (key_pressed->scancode == sf::Keyboard::Scancode::N)
             {
-                this->e_game_mode = (this->e_game_mode == home_screen) ? play_screen : home_screen;
+                e_GameMode = (e_GameMode == home_screen) ? play_screen : home_screen;
                 break;
             }
         }
@@ -115,7 +109,7 @@ void Game::update()
 
     this->poll_Event();
 
-    switch (this->e_game_mode)
+    switch (e_GameMode)
     {
     case home_screen:
         this->home->update_Home();
@@ -133,7 +127,7 @@ void Game::render()
     this->window->clear(sf::Color(86, 86, 86));
 
     // Draw Objects
-    switch (e_game_mode)
+    switch (e_GameMode)
     {
     case home_screen:
         this->home->render_Home(this->window);
