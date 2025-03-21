@@ -57,9 +57,11 @@ Player::~Player()
     delete this->player;
 }
 
-void Player::update_Player(float delta_time)
+void Player::update_Player()
 {
-    this->player_Movement(delta_time);
+    time.nextDeltaTime();
+
+    this->player_Movement(time.getDeltaTime());
 }
 
 void Player::render_Player(sf::RenderWindow *window)

@@ -1,6 +1,5 @@
 #pragma once
 
-#include "../common.hpp"
 #include "../Entity/Player.hpp"
 
 class Play

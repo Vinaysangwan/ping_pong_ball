@@ -12,6 +12,7 @@ private:
     // InitFunctions
     void init_Variables();
     void init_Window();
+    void initFPSText();
     void initHome();
     void initPlay();
 
@@ -40,9 +41,11 @@ private:
     sf::VideoMode window_video_mode;
     std::string title;
 
-    // Time
-    sf::Clock *game_clock;
-    float delta_time;
+    // Times
+    Times time;
+
+    // FPS Text
+    Texts *fps_text;
 
     // Home Screen
     Home *home;

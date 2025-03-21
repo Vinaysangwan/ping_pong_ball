@@ -6,24 +6,26 @@ void Play::initVariables()
 
 void Play::initPlayer()
 {
-    this->player = new Player();
+    player = new Player();
 }
 
 Play::Play()
 {
-    this->initVariables();
-    this->initPlayer();
+    initVariables();
+    initPlayer();
 }
 
 Play::~Play()
 {
+    delete player;
 }
 
 void Play::update_Play()
 {
+    player->update_Player();
 }
 
 void Play::render_Play(sf::RenderWindow *window)
 {
-    this->player->render_Player(window);
+    player->render_Player(window);
 }

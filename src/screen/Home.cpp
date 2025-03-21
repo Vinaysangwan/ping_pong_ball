@@ -3,7 +3,7 @@
 void Home::initTexts()
 {
     home_text = new Texts("Home", "assets/fonts/Roboto-Regular.ttf");
-    home_text->setOrigin(sf::Vector2f{home_text->getGlobalBounds().size / 2.0f});
+    home_text->setOrigin(home_text->getGlobalBounds().size / 2.0f);
     home_text->setPosition(sf::Vector2f{window_size.x / 2.0f, 50.0f});
 }
 

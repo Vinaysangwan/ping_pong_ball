@@ -12,9 +12,6 @@ void Game::init_Variables()
 
     // Window Title
     this->title = "Ping Pong";
-
-    // Game Clock
-    this->game_clock = new sf::Clock();
 }
 
 // Init Window
@@ -27,6 +24,13 @@ void Game::init_Window()
 
     // Set Window Position
     this->window->setPosition(sf::Vector2i{this->window->getPosition().x, this->window->getPosition().y - 50});
+}
+
+// Init FPS Text
+void Game::initFPSText()
+{
+    this->fps_text = new Texts("FPS: 0.00000", "assets/fonts/Roboto-Regular.ttf");
+    this->fps_text->setPosition(sf::Vector2f{10.0f, 10.0f});
 }
 
 // Init Home
@@ -47,6 +51,9 @@ Game::Game()
     this->init_Variables();
     this->init_Window();
 
+    // Init FPSText Function
+    this->initFPSText();
+
     // Init Screen Functions
     this->initHome();
     this->initPlay();
@@ -55,9 +62,9 @@ Game::Game()
 // Destructor
 Game::~Game()
 {
+    delete this->fps_text;
     delete this->home;
     delete this->play;
-    delete this->game_clock;
     delete this->window;
 }
 
@@ -104,8 +111,11 @@ void Game::poll_Event()
 // Game Update
 void Game::update()
 {
-    // Set Delta Time
-    this->delta_time = this->game_clock->restart().asSeconds();
+    // update Delta Time
+    this->time.nextDeltaTime();
+
+    // Update FPS Text
+    this->fps_text->stream_string_num("FPS: ", 1.0f / this->time.getDeltaTime());
 
     this->poll_Event();
 
@@ -127,6 +137,8 @@ void Game::render()
     this->window->clear(sf::Color(86, 86, 86));
 
     // Draw Objects
+    this->window->draw(*this->fps_text);
+
     switch (e_GameMode)
     {
     case home_screen:

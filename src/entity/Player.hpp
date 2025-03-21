@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../common.hpp"
+#include "../times/Times.hpp"
 
 class Player
 {
@@ -21,11 +22,14 @@ public:
     ~Player();
 
     // Main Player Functions
-    void update_Player(float delta_time);
+    void update_Player();
     void render_Player(sf::RenderWindow *window);
 
 private:
     // Private Members
+
+    // Times
+    Times time;
 
     // Player Variable
     sf::RectangleShape *player;

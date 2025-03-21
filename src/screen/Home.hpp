@@ -1,6 +1,5 @@
 #pragma once
 
-#include "../common.hpp"
 #include "../texts/Texts.hpp"
 
 class Home
