@@ -1,5 +1,6 @@
 #pragma once
 
+#include "../game_manager/GameManager.hpp"
 #include "../texts/Texts.hpp"
 
 class Home
@@ -12,7 +13,7 @@ public:
     // Public Functions
 
     // Constructors & Destructors
-    Home(sf::Vector2u window_size);
+    Home();
     ~Home();
 
     // Main Home Functions
@@ -21,9 +22,6 @@ public:
 
 private:
     // Private Members
-
-    // Window Size
-    sf::Vector2u window_size;
 
     // Texts
     Texts *home_text;

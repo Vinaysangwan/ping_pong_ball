@@ -1,6 +1,5 @@
 #pragma once
 
-#include "../game_manager/GameManager.hpp"
 #include "../screen/Home.hpp"
 #include "../screen/Play.hpp"
 
@@ -31,10 +30,6 @@ public:
 
 private:
     // Private Members
-
-    // Window Size
-    unsigned int window_width;
-    unsigned int window_height;
 
     // Window Members
     sf::RenderWindow *window;

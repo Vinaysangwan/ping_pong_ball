@@ -7,10 +7,8 @@ void Home::initTexts()
     home_text->setPosition(sf::Vector2f{window_size.x / 2.0f, 50.0f});
 }
 
-Home::Home(sf::Vector2u window_size)
+Home::Home()
 {
-    this->window_size = window_size;
-
     initTexts();
 }
 

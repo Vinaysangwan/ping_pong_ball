@@ -1,5 +1,7 @@
 #pragma once
 
+#include "../common.hpp"
+
 enum GameMode
 {
     home_screen,
@@ -7,3 +9,4 @@ enum GameMode
 };
 
 extern GameMode e_GameMode;
+extern sf::Vector2u window_size;
