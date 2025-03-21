@@ -25,22 +25,22 @@ void Game::init_Window()
     this->window->setPosition(sf::Vector2i{this->window->getPosition().x, this->window->getPosition().y - 50});
 }
 
-// Init Player
-void Game::init_Player()
+// Init the Game Mode
+void Game::initGameMode()
 {
-    this->player = new Player();
+    this->e_game_mode = home_screen;
 }
 
-// Init Enemy
-void Game::init_Enemy()
+// Init Home
+void Game::initHome()
 {
-    this->enemy = new Enemy();
+    this->home = new Home();
 }
 
-// Init Ball
-void Game::init_Ball()
+// Init Play
+void Game::initPlay()
 {
-    this->ball = new Ball();
+    this->play = new Play();
 }
 
 // Constructor
@@ -49,22 +49,18 @@ Game::Game()
     this->init_Variables();
     this->init_Window();
 
-    // Init Entity
-    this->init_Player();
-    this->init_Enemy();
-    this->init_Ball();
+    // Init Screen Functions
+    this->initHome();
+    this->initPlay();
 }
 
 // Destructor
 Game::~Game()
 {
-    delete this->window;
+    delete this->home;
+    delete this->play;
     delete this->game_clock;
-
-    // Delete Entity
-    delete this->player;
-    delete this->enemy;
-    delete this->ball;
+    delete this->window;
 }
 
 bool Game::running() const
@@ -97,6 +93,12 @@ void Game::poll_Event()
                 this->window->close();
                 break;
             }
+
+            if (key_pressed->scancode == sf::Keyboard::Scancode::N)
+            {
+                this->e_game_mode = (this->e_game_mode == home_screen) ? play_screen : home_screen;
+                break;
+            }
         }
     }
 }
@@ -107,9 +109,18 @@ void Game::update()
     // Set Delta Time
     this->delta_time = this->game_clock->restart().asSeconds();
 
-    this->player->update_Player(this->delta_time);
-
     this->poll_Event();
+
+    switch (this->e_game_mode)
+    {
+    case home_screen:
+        this->home->update_Home();
+        break;
+
+    case play_screen:
+        this->play->update_Play();
+        break;
+    }
 }
 
 // Game Render
@@ -118,9 +129,16 @@ void Game::render()
     this->window->clear(sf::Color(86, 86, 86));
 
     // Draw Objects
-    this->player->render_Player(this->window);
-    this->enemy->render_Enemy(this->window);
-    this->ball->render_Ball(this->window);
+    switch (e_game_mode)
+    {
+    case home_screen:
+        this->home->render_Home();
+        break;
+
+    case play_screen:
+        this->play->render_Play(this->window);
+        break;
+    }
 
     this->window->display();
 }

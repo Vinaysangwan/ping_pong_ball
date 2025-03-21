@@ -7,7 +7,7 @@ void Enemy::init_Variables()
     this->enemy_size.y = 120.0f; // Height
 
     // Set Enemy Color
-    this->enemy_color = sf::Color(0, 50, 200);
+    this->enemy_color = sf::Color(0x0CAFFF);
 
     // Enemy Speed
     this->enemy_speed = 300.0f;

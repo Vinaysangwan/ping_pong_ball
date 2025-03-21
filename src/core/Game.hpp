@@ -1,11 +1,7 @@
 #pragma once
 
-#include "../common.hpp"
-
-// Include Entities
-#include "../entity/Player.hpp"
-#include "../entity/Enemy.hpp"
-#include "../entity/Ball.hpp"
+#include "../screen/Home.hpp"
+#include "../screen/Play.hpp"
 
 class Game
 {
@@ -15,9 +11,9 @@ private:
     // InitFunctions
     void init_Variables();
     void init_Window();
-    void init_Player();
-    void init_Enemy();
-    void init_Ball();
+    void initGameMode();
+    void initHome();
+    void initPlay();
 
 public:
     // Public Functions
@@ -44,12 +40,18 @@ private:
     sf::Clock *game_clock;
     float delta_time;
 
-    // Player
-    Player *player;
+    // Game Mode
+    enum GameMode
+    {
+        home_screen,
+        play_screen,
+    };
 
-    // Enemy
-    Enemy *enemy;
+    GameMode e_game_mode;
 
-    // Ball
-    Ball *ball;
+    // Home Screen
+    Home *home;
+
+    // Play Screen
+    Play *play;
 };
