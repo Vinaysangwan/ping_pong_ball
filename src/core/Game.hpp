@@ -31,6 +31,10 @@ public:
 private:
     // Private Members
 
+    // Window Size
+    unsigned int window_width;
+    unsigned int window_height;
+
     // Window Members
     sf::RenderWindow *window;
     sf::VideoMode window_video_mode;

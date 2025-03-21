@@ -2,9 +2,13 @@
 
 void Game::init_Variables()
 {
-    // Define Window Width & Height
-    this->window_video_mode.size.x = 800; // Width
-    this->window_video_mode.size.y = 600; // Height
+    // Init Window Width & Height
+    window_width = 800;  // Width
+    window_height = 600; // Height
+
+    // Init Window Video Mode
+    this->window_video_mode.size.x = window_width;
+    this->window_video_mode.size.y = window_height;
 
     // Window Title
     this->title = "Ping Pong";
@@ -34,7 +38,7 @@ void Game::initGameMode()
 // Init Home
 void Game::initHome()
 {
-    this->home = new Home();
+    this->home = new Home(sf::Vector2u{window_width, window_height});
 }
 
 // Init Play
@@ -132,7 +136,7 @@ void Game::render()
     switch (e_game_mode)
     {
     case home_screen:
-        this->home->render_Home();
+        this->home->render_Home(this->window);
         break;
 
     case play_screen:

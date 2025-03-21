@@ -14,7 +14,7 @@ public:
     Temp();
     ~Temp();
 
-    // Temp Main Functions
+    // Main Temp Functions
 
 private:
     // Private Members
