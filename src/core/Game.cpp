@@ -138,11 +138,11 @@ void Game::render()
     switch (e_GameMode)
     {
     case home_screen:
-        this->home->render_Home(this->window);
+        this->home->render_Home(*this->window);
         break;
 
     case play_screen:
-        this->play->render_Play(this->window);
+        this->play->render_Play(*this->window);
         break;
     }
 

@@ -25,7 +25,7 @@ void Play::update_Play()
     player->update_Player();
 }
 
-void Play::render_Play(sf::RenderWindow *window)
+void Play::render_Play(sf::RenderWindow &window)
 {
     player->render_Player(window);
 }

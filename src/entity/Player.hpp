@@ -23,7 +23,7 @@ public:
 
     // Main Player Functions
     void update_Player();
-    void render_Player(sf::RenderWindow *window);
+    void render_Player(sf::RenderWindow &window);
 
 private:
     // Private Members

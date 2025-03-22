@@ -19,7 +19,7 @@ public:
 
     // Main Enemy Functions
     void update_Enemy();
-    void render_Enemy(sf::RenderWindow *window);
+    void render_Enemy(sf::RenderWindow &window);
 
 private:
     // Private Memebers

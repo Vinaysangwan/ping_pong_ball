@@ -64,7 +64,7 @@ void Player::update_Player()
     this->player_Movement(time.getDeltaTime());
 }
 
-void Player::render_Player(sf::RenderWindow *window)
+void Player::render_Player(sf::RenderWindow &window)
 {
-    window->draw(*this->player);
+    window.draw(*this->player);
 }

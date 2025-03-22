@@ -42,7 +42,7 @@ void Ball::update_Ball()
 {
 }
 
-void Ball::render_Ball(sf::RenderWindow *window)
+void Ball::render_Ball(sf::RenderWindow &window)
 {
-    window->draw(*this->ball);
+    window.draw(*this->ball);
 }

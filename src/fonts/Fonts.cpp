@@ -12,7 +12,6 @@ void Fonts::initFonts(std::string address)
 
 Fonts::Fonts(std::string address)
 {
-
     initFonts(address);
 }
 

@@ -19,7 +19,7 @@ public:
 
     // Main Ball Functions
     void update_Ball();
-    void render_Ball(sf::RenderWindow *window);
+    void render_Ball(sf::RenderWindow &window);
 
 private:
     // Private Member

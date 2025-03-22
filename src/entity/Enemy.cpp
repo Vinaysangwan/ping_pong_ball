@@ -43,7 +43,7 @@ void Enemy::update_Enemy()
 {
 }
 
-void Enemy::render_Enemy(sf::RenderWindow *window)
+void Enemy::render_Enemy(sf::RenderWindow &window)
 {
-    window->draw(*this->enemy);
+    window.draw(*this->enemy);
 }
