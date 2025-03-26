@@ -35,6 +35,7 @@ private:
     sf::RenderWindow *window;
     sf::VideoMode window_video_mode;
     std::string title;
+    sf::Color window_color;
 
     // Mouse Position
     sf::Vector2i mouse_position;

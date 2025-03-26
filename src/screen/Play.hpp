@@ -1,7 +1,11 @@
 #pragma once
 
-#include "../Entity/Player.hpp"
 #include "../game_manager/GameManager.hpp"
+
+// Include Entities
+#include "../Entity/Player.hpp"
+#include "../Entity/Enemy.hpp"
+#include "../Entity/Ball.hpp"
 
 class Play
 {
@@ -11,6 +15,8 @@ private:
     // Init Functions
     void initVariables();
     void initPlayer();
+    void initEnemy();
+    void initBall();
 
     void game_mode_switch();
 
@@ -30,4 +36,10 @@ private:
 
     // Player
     Player *player;
+
+    // Enemy
+    Enemy *enemy;
+
+    // Ball
+    Ball *ball;
 };

@@ -1,5 +1,10 @@
 #include "Home.hpp"
 
+// ********************************************************************************************************
+// ************************************************* Private Functions ************************************
+// ********************************************************************************************************
+
+// Initialize Variables
 void Home::initVariables()
 {
     // Set Font Address
@@ -14,14 +19,16 @@ void Home::initVariables()
     button_active_color = sf::Color(0, 255, 0);
 }
 
+// Initialize Texts
 void Home::initTexts()
 {
     // Init Home Text
-    home_text = new Texts("Home", font_address);
+    home_text = new Texts("Ping Pong", font_address);
     home_text->setOrigin(home_text->getGlobalBounds().size / 2.0f);
     home_text->setPosition(sf::Vector2f{window_size.x / 2.0f, 50.0f});
 }
 
+// Initialize Buttons
 void Home::initButtons()
 {
     // Play Button
@@ -38,7 +45,13 @@ void Home::initButtons()
 // Event if button is hover or active
 void Home::handle_button_events()
 {
-    if (play_button->is_button_active(mouse_position))
+    /*
+        if,
+            - Click Play Button = Play Screen
+            - Click quit Button =  Window Close(quit)
+    */
+
+    if (play_button->is_button_active(mouse_position) || sf::Keyboard::isKeyPressed(sf::Keyboard::Scancode::Enter))
     {
         e_GameMode = play_screen;
     }
@@ -48,6 +61,10 @@ void Home::handle_button_events()
         e_GameMode = quit;
     }
 }
+
+// ********************************************************************************************************
+// ************************************************* Public Functions *************************************
+// ********************************************************************************************************
 
 // Constructor
 Home::Home()

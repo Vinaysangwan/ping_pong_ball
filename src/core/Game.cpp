@@ -1,5 +1,10 @@
 #include "Game.hpp"
 
+// ********************************************************************************************************
+// ************************************************* Private Functions ************************************
+// ********************************************************************************************************
+
+// Init Variables
 void Game::init_Variables()
 {
     // Init Window Video Mode
@@ -8,6 +13,9 @@ void Game::init_Variables()
 
     // Window Title
     this->title = "Ping Pong";
+
+    // Set Initial Window Color
+    window_color = sf::Color(0, 0, 0);
 }
 
 // Init Window
@@ -40,6 +48,10 @@ void Game::initPlay()
 {
     this->play = new Play();
 }
+
+// ********************************************************************************************************
+// ************************************************* Public Functions *************************************
+// ********************************************************************************************************
 
 // Constructor
 Game::Game()
@@ -127,24 +139,27 @@ void Game::update()
 // Game Render
 void Game::render()
 {
-    this->window->clear(sf::Color(86, 86, 86));
+    this->window->clear(window_color);
 
     // Draw Objects
-    this->window->draw(*this->fps_text);
 
     switch (e_GameMode)
     {
     case home_screen:
+        window_color = sf::Color(sf::Color(0, 0, 0));
         this->home->render_Home(*this->window);
         break;
 
     case play_screen:
+        window_color = sf::Color(sf::Color(86, 86, 86));
         this->play->render_Play(*this->window);
         break;
 
     case quit:
         break;
     }
+
+    this->window->draw(*this->fps_text);
 
     this->window->display();
 }
