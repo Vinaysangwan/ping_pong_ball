@@ -54,3 +54,35 @@ void Buttons::renderButton(sf::RenderWindow &window)
     window.draw(*button);
     window.draw(*text);
 }
+
+bool Buttons::is_button_hover(sf::Vector2f mouse_position) const
+{
+    if (mouse_position.x >= button_position.x - button_size.x / 2.0f && mouse_position.x <= button_position.x + button_size.x / 2.0f &&
+        mouse_position.y >= button_position.y - button_size.y / 2.0f && mouse_position.y <= button_position.y + button_size.y / 2.0f)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+bool Buttons::is_button_active(sf::Vector2f mouse_position) const
+{
+    if (is_button_hover(mouse_position))
+    {
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
+        {
+            button->setFillColor(active_color);
+            return true;
+        }
+        button->setFillColor(hover_color);
+        return false;
+    }
+    else
+    {
+        button->setFillColor(idle_color);
+        return false;
+    }
+}

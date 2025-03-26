@@ -6,6 +6,7 @@ enum GameMode
 {
     home_screen,
     play_screen,
+    quit,
 };
 
 extern GameMode e_GameMode;

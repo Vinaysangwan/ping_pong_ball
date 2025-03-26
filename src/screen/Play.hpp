@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../Entity/Player.hpp"
+#include "../game_manager/GameManager.hpp"
 
 class Play
 {
@@ -10,6 +11,8 @@ private:
     // Init Functions
     void initVariables();
     void initPlayer();
+
+    void game_mode_switch();
 
 public:
     // Public Functions

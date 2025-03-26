@@ -13,6 +13,8 @@ private:
     void initTexts();
     void initButtons();
 
+    void handle_button_events();
+
 public:
     // Public Functions
 
@@ -23,9 +25,13 @@ public:
     // Main Home Functions
     void update_Home();
     void render_Home(sf::RenderWindow &window);
+    void setMousePos(sf::Vector2i mouse_position);
 
 private:
     // Private Members
+
+    // Mouse Position
+    sf::Vector2f mouse_position;
 
     // Font Address
     std::string font_address;

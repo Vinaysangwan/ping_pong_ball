@@ -19,6 +19,8 @@ public:
 
     // Main Buttons Functions
     void renderButton(sf::RenderWindow &window);
+    bool is_button_hover(sf::Vector2f mouse_position) const;
+    bool is_button_active(sf::Vector2f mouse_position) const;
 
 private:
     // Private Members

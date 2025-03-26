@@ -35,6 +35,20 @@ void Home::initButtons()
                               button_idle_color, button_hover_color, button_active_color);
 }
 
+// Event if button is hover or active
+void Home::handle_button_events()
+{
+    if (play_button->is_button_active(mouse_position))
+    {
+        e_GameMode = play_screen;
+    }
+
+    if (quit_button->is_button_active(mouse_position))
+    {
+        e_GameMode = quit;
+    }
+}
+
 // Constructor
 Home::Home()
 {
@@ -48,11 +62,13 @@ Home::~Home()
 {
     delete home_text;
     delete play_button;
+    delete quit_button;
 }
 
 // Update Function
 void Home::update_Home()
 {
+    handle_button_events();
 }
 
 // Render Function
@@ -62,4 +78,10 @@ void Home::render_Home(sf::RenderWindow &window)
     window.draw(*home_text);
     play_button->renderButton(window);
     quit_button->renderButton(window);
+}
+
+// Set Mouse Position
+void Home::setMousePos(sf::Vector2i mouse_position)
+{
+    this->mouse_position = (sf::Vector2f)mouse_position;
 }

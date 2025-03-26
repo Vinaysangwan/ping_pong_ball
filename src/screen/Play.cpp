@@ -9,6 +9,14 @@ void Play::initPlayer()
     player = new Player();
 }
 
+void Play::game_mode_switch()
+{
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scancode::Escape))
+    {
+        e_GameMode = home_screen;
+    }
+}
+
 Play::Play()
 {
     initVariables();
@@ -22,6 +30,8 @@ Play::~Play()
 
 void Play::update_Play()
 {
+    game_mode_switch();
+
     player->update_Player();
 }
 

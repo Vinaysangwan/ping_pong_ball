@@ -87,19 +87,10 @@ void Game::poll_Event()
             break;
         }
 
-        if (const auto *key_pressed = event->getIf<sf::Event::KeyPressed>())
+        if (e_GameMode == quit)
         {
-            if (key_pressed->scancode == sf::Keyboard::Scancode::Escape)
-            {
-                this->window->close();
-                break;
-            }
-
-            if (key_pressed->scancode == sf::Keyboard::Scancode::N)
-            {
-                e_GameMode = (e_GameMode == home_screen) ? play_screen : home_screen;
-                break;
-            }
+            window->close();
+            break;
         }
     }
 }
@@ -110,6 +101,8 @@ void Game::update()
     // update Delta Time
     this->time.nextDeltaTime();
 
+    mouse_position = sf::Mouse::getPosition(*window);
+
     // Update FPS Text
     this->fps_text->stream_string_num("FPS: ", 1.0f / this->time.getDeltaTime());
 
@@ -118,11 +111,15 @@ void Game::update()
     switch (e_GameMode)
     {
     case home_screen:
+        this->home->setMousePos(mouse_position);
         this->home->update_Home();
         break;
 
     case play_screen:
         this->play->update_Play();
+        break;
+
+    case quit:
         break;
     }
 }
@@ -143,6 +140,9 @@ void Game::render()
 
     case play_screen:
         this->play->render_Play(*this->window);
+        break;
+
+    case quit:
         break;
     }
 

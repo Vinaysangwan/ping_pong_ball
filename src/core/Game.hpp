@@ -36,6 +36,9 @@ private:
     sf::VideoMode window_video_mode;
     std::string title;
 
+    // Mouse Position
+    sf::Vector2i mouse_position;
+
     // Times
     Times time;
 
