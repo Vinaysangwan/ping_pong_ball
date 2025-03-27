@@ -16,7 +16,10 @@ public:
 
     // Main Times Functions
     void nextDeltaTime();
+
+    // Return Functions
     float getDeltaTime() const;
+    int getDtEpoch();
 
 private:
     // Private Members

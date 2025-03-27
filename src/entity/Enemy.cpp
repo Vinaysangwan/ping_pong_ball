@@ -42,7 +42,7 @@ void Enemy::update_Enemy()
 {
 }
 
-void Enemy::getBallRadius(sf::Vector2f ball_radius)
+void Enemy::getBallRadius(float ball_radius)
 {
     this->ball_radius = ball_radius;
 }
