@@ -2,6 +2,7 @@
 
 #include "../common.hpp"
 #include "../times/Times.hpp"
+#include "../game_manager/GameManager.hpp"
 
 class Player : public sf::RectangleShape
 {

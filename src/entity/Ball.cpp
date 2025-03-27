@@ -29,6 +29,7 @@ void Ball::init_Ball()
 
 void Ball::moveBall()
 {
+    this->move(sf::Vector2f{0.0f, 1.0f});
 }
 
 bool Ball::detectCollision() const
@@ -48,6 +49,7 @@ Ball::~Ball()
 
 void Ball::update_Ball()
 {
+    moveBall();
 }
 
 void Ball::getEntitySize(sf::Vector2f player_size, sf::Vector2f enemy_size)

@@ -1,7 +1,5 @@
 #pragma once
 
-#include "../game_manager/GameManager.hpp"
-
 // Include Entities
 #include "../entity/Player.hpp"
 #include "../entity/Enemy.hpp"

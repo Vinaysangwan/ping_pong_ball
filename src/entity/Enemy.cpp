@@ -28,6 +28,29 @@ void Enemy::init_Enemy()
     this->setOutlineColor(sf::Color(0, 0, 0));
 }
 
+void Enemy::moveEnemy()
+{
+    if (this->getPosition().y - enemy_size.y / 2.0f <= 0.0f)
+    {
+        this->setPosition(sf::Vector2f{this->getPosition().x, 0.1f + enemy_size.y / 2.0f});
+        return;
+    }
+    else if (this->getPosition().y + enemy_size.y / 2.0f >= window_size.y)
+    {
+        this->setPosition(sf::Vector2f{this->getPosition().x, window_size.y - 0.1f - enemy_size.y / 2.0f});
+        return;
+    }
+
+    if (ball_position.y + ball_radius <= this->getPosition().y - enemy_size.y / 2.0f + 5.0f)
+    {
+        this->move(sf::Vector2f{0.0f, -enemy_speed * time.getDeltaTime()});
+    }
+    else if (ball_position.y - ball_radius >= this->getPosition().y + enemy_size.y / 2.0f - 5.0f)
+    {
+        this->move(sf::Vector2f{0.0f, enemy_speed * time.getDeltaTime()});
+    }
+}
+
 Enemy::Enemy()
 {
     init_Variables();
@@ -40,6 +63,9 @@ Enemy::~Enemy()
 
 void Enemy::update_Enemy()
 {
+    time.nextDeltaTime();
+
+    moveEnemy();
 }
 
 void Enemy::getBallRadius(float ball_radius)

@@ -32,6 +32,10 @@ $(EXE): $(OBJS)
 run: $(EXE)
 	./$(EXE)
 
+# Debug
+debug:
+	gbd ./$(EXE)
+
 # Clean output
 clean:
 	rm -rf $(OBJ_DIR)/* $(EXE)

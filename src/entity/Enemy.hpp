@@ -1,6 +1,8 @@
 #pragma once
 
 #include "../common.hpp"
+#include "../times/Times.hpp"
+#include "../game_manager/GameManager.hpp"
 
 class Enemy : public sf::RectangleShape
 {
@@ -37,4 +39,7 @@ private:
     // Ball
     float ball_radius;
     sf::Vector2f ball_position;
+
+    // Times
+    Times time;
 };

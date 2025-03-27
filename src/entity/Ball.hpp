@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../common.hpp"
+#include "../game_manager/GameManager.hpp"
 
 class Ball : public sf::CircleShape
 {

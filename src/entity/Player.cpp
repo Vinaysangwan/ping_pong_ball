@@ -43,6 +43,17 @@ void Player::player_Movement(float delta_time)
         request_player_movement += sf::Vector2f(0.0f, 1.0f);
     }
 
+    if (this->getPosition().y - player_size.y / 2.0f <= 0.0f)
+    {
+        this->setPosition(sf::Vector2f{this->getPosition().x, 0.1f + player_size.y / 2.0f});
+        return;
+    }
+    else if (this->getPosition().y + player_size.y / 2.0f >= window_size.y)
+    {
+        this->setPosition(sf::Vector2f{this->getPosition().x, window_size.y - 0.1f - player_size.y / 2.0f});
+        return;
+    }
+
     this->move(request_player_movement * this->player_speed * delta_time);
 }
 
