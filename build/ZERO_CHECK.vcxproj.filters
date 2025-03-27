@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\coding\SFML_Projects\VScode\projects\ping_pong_ball\build\CMakeFiles\66241e1966150bd43dfb37b565cbc80c\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{A9B0364B-C377-3538-8AC2-578B1C758BFE}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -3,46 +3,56 @@
 void Ball::init_Variables()
 {
     // Set Ball Radius
-    this->ball_radius = 10.0f;
+    ball_radius = 10.0f;
 
     // Set Ball Color
-    this->ball_color = sf::Color(255, 255, 255);
+    ball_color = sf::Color(255, 255, 255);
 
     // Set Ball Speed
-    this->ball_speed = 300.0f;
+    ball_speed = 300.0f;
 }
 
 void Ball::init_Ball()
 {
     // Initialize the ball & Set Outline Thickness
-    this->ball = new sf::CircleShape(this->ball_radius - 3.0f);
-    this->ball->setOutlineThickness(3.0f);
+    this->setRadius(ball_radius - 3.0f);
+    this->setOutlineThickness(3.0f);
 
     // Set Ball Origin & Position
-    this->ball->setOrigin(sf::Vector2f{this->ball->getRadius(), this->ball->getRadius()});
-    this->ball->setPosition(sf::Vector2f{400.0f, 300.0f});
+    this->setOrigin(sf::Vector2f{this->getRadius(), this->getRadius()});
+    this->setPosition(sf::Vector2f{400.0f, 300.0f});
 
     // Apply Ball Color
-    this->ball->setFillColor(this->ball_color);
-    this->ball->setOutlineColor(sf::Color(0, 0, 0));
+    this->setFillColor(ball_color);
+    this->setOutlineColor(sf::Color(0, 0, 0));
 }
 
 Ball::Ball()
 {
-    this->init_Variables();
-    this->init_Ball();
+    init_Variables();
+    init_Ball();
 }
 
 Ball::~Ball()
 {
-    delete this->ball;
 }
 
 void Ball::update_Ball()
 {
 }
 
-void Ball::render_Ball(sf::RenderWindow &window)
+void Ball::getEntitySize(sf::Vector2f player_size, sf::Vector2f enemy_size)
 {
-    window.draw(*this->ball);
+    this->player_size = player_size;
+    this->enemy_size = enemy_size;
+}
+
+void Ball::getPlayerPosition(sf::Vector2f player_position)
+{
+    this->player_position = player_position;
+}
+
+void Ball::getEnemyPosition(sf::Vector2f enemy_position)
+{
+    this->enemy_position = enemy_position;
 }

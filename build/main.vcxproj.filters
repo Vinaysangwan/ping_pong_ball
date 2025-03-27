@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\coding\SFML_Projects\VScode\projects\ping_pong_ball\src\components\Buttons.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\coding\SFML_Projects\VScode\projects\ping_pong_ball\src\core\Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\coding\SFML_Projects\VScode\projects\ping_pong_ball\src\entity\Ball.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\coding\SFML_Projects\VScode\projects\ping_pong_ball\src\entity\Enemy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\coding\SFML_Projects\VScode\projects\ping_pong_ball\src\entity\Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\coding\SFML_Projects\VScode\projects\ping_pong_ball\src\fonts\Fonts.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\coding\SFML_Projects\VScode\projects\ping_pong_ball\src\game_manager\GameManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\coding\SFML_Projects\VScode\projects\ping_pong_ball\src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\coding\SFML_Projects\VScode\projects\ping_pong_ball\src\screen\Home.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\coding\SFML_Projects\VScode\projects\ping_pong_ball\src\screen\Play.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\coding\SFML_Projects\VScode\projects\ping_pong_ball\src\texts\Texts.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\coding\SFML_Projects\VScode\projects\ping_pong_ball\src\times\Times.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\coding\SFML_Projects\VScode\projects\ping_pong_ball\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{66DF267A-4008-37C2-A058-E5796793CAB5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

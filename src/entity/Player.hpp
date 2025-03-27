@@ -3,7 +3,7 @@
 #include "../common.hpp"
 #include "../times/Times.hpp"
 
-class Player
+class Player : public sf::RectangleShape
 {
 private:
     // Private Functions
@@ -23,7 +23,6 @@ public:
 
     // Main Player Functions
     void update_Player();
-    void render_Player(sf::RenderWindow &window);
 
 private:
     // Private Members
@@ -32,7 +31,6 @@ private:
     Times time;
 
     // Player Variable
-    sf::RectangleShape *player;
     sf::Vector2f player_size;
     sf::Color player_color;
 

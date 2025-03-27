@@ -2,7 +2,7 @@
 
 #include "../common.hpp"
 
-class Enemy
+class Enemy : public sf::RectangleShape
 {
 private:
     // Parivate Functions
@@ -10,6 +10,8 @@ private:
     // Init Functions
     void init_Variables();
     void init_Enemy();
+
+    void moveEnemy();
 
 public:
     // Public Functions
@@ -19,15 +21,20 @@ public:
 
     // Main Enemy Functions
     void update_Enemy();
-    void render_Enemy(sf::RenderWindow &window);
+
+    void getBallRadius(float ball_radius);
+    void getBallPosition(sf::Vector2f ball_position);
 
 private:
     // Private Memebers
 
     // Enemy
-    sf::RectangleShape *enemy;
     sf::Vector2f enemy_size;
     sf::Color enemy_color;
 
     float enemy_speed;
+
+    // Ball
+    float ball_radius;
+    sf::Vector2f ball_position;
 };

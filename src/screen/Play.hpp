@@ -3,9 +3,9 @@
 #include "../game_manager/GameManager.hpp"
 
 // Include Entities
-#include "../Entity/Player.hpp"
-#include "../Entity/Enemy.hpp"
-#include "../Entity/Ball.hpp"
+#include "../entity/Player.hpp"
+#include "../entity/Enemy.hpp"
+#include "../entity/Ball.hpp"
 
 class Play
 {

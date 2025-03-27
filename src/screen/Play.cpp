@@ -52,6 +52,9 @@ Play::Play()
     initPlayer();
     initEnemy();
     initBall();
+
+    enemy->getBallRadius(ball->getRadius());
+    ball->getEntitySize(player->getSize(), enemy->getSize());
 }
 
 // Destructor
@@ -68,14 +71,19 @@ void Play::update_Play()
     game_mode_switch();
 
     player->update_Player();
+
+    enemy->getBallPosition(ball->getPosition());
     enemy->update_Enemy();
+
+    ball->getPlayerPosition(player->getPosition());
+    ball->getEnemyPosition(enemy->getPosition());
     ball->update_Ball();
 }
 
 // Render Function
 void Play::render_Play(sf::RenderWindow &window)
 {
-    player->render_Player(window);
-    enemy->render_Enemy(window);
-    ball->render_Ball(window);
+    window.draw(*player);
+    window.draw(*enemy);
+    window.draw(*ball);
 }

@@ -1,0 +1,3 @@
+C:/coding/SFML_Projects/VScode/projects/ping_pong_ball/build/CMakeFiles/main.dir
+C:/coding/SFML_Projects/VScode/projects/ping_pong_ball/build/CMakeFiles/ALL_BUILD.dir
+C:/coding/SFML_Projects/VScode/projects/ping_pong_ball/build/CMakeFiles/ZERO_CHECK.dir
