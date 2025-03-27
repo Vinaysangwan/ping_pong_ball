@@ -5,34 +5,33 @@ CXXFLAGS = -I./include -std=c++23 -Wall -Wextra -O3
 # Linker
 LDFLAGS = -L./lib -lsfml-window -lsfml-system -lsfml-graphics
 
-# Object Files
-OBJ = output/main.o output/Game.o output/GameManager.o output/Times.o output/Home.o output/Play.o output/Player.o output/Fonts.o output/Texts.o output/Enemy.o output/Ball.o output/Buttons.o
+# Directories
+SRC_DIR = src
+OBJ_DIR = output
+
+# Source and object files
+SRCS := $(wildcard $(SRC_DIR)/**/*.cpp $(SRC_DIR)/*.cpp)
+OBJS := $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRCS))
 
 # Executable
 EXE = main.exe
 
 # Target
-all: compile link run
+all: $(EXE) run
 
-compile:
-	$(CXX) $(CXXFLAGS) -c -o output/main.o src/main.cpp
-	$(CXX) $(CXXFLAGS) -c -o output/Game.o src/core/Game.cpp
-	$(CXX) $(CXXFLAGS) -c -o output/GameManager.o src/game_manager/GameManager.cpp
-	$(CXX) $(CXXFLAGS) -c -o output/Times.o src/times/Times.cpp
-	$(CXX) $(CXXFLAGS) -c -o output/Home.o src/screen/Home.cpp
-	$(CXX) $(CXXFLAGS) -c -o output/Play.o src/screen/Play.cpp
-	$(CXX) $(CXXFLAGS) -c -o output/Player.o src/entity/Player.cpp
-	$(CXX) $(CXXFLAGS) -c -o output/Fonts.o src/fonts/Fonts.cpp
-	$(CXX) $(CXXFLAGS) -c -o output/Texts.o src/texts/Texts.cpp
-	$(CXX) $(CXXFLAGS) -c -o output/Enemy.o src/entity/Enemy.cpp
-	$(CXX) $(CXXFLAGS) -c -o output/Ball.o src/entity/Ball.cpp
-	$(CXX) $(CXXFLAGS) -c -o output/Buttons.o src/components/Buttons.cpp
+# Compilation rule
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
+	@mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-link:
-	$(CXX) $(CXXFLAGS) -o $(EXE) $(OBJ) $(LDFLAGS)
+# Linking rule
+$(EXE): $(OBJS)
+	$(CXX) $(CXXFLAGS) -o $(EXE) $(OBJS) $(LDFLAGS)
 
-run:
+# Run the executable
+run: $(EXE)
 	./$(EXE)
 
+# Clean output
 clean:
-	rm -rf ./output/* ./$(EXE) 
+	rm -rf $(OBJ_DIR)/* $(EXE)

@@ -27,6 +27,15 @@ void Ball::init_Ball()
     this->setOutlineColor(sf::Color(0, 0, 0));
 }
 
+void Ball::moveBall()
+{
+}
+
+bool Ball::detectCollision() const
+{
+    return false;
+}
+
 Ball::Ball()
 {
     init_Variables();
