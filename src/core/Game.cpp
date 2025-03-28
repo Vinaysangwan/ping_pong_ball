@@ -16,6 +16,9 @@ void Game::init_Variables()
 
     // Set Initial Window Color
     window_color = sf::Color(0, 0, 0);
+
+    // Set Font Address
+    font_address = "assets/fonts/Roboto-Regular.ttf";
 }
 
 // Init Window

@@ -43,6 +43,9 @@ private:
     // Times
     Times time;
 
+    // Font Address
+    std::string font_address;
+
     // FPS Text
     Texts *fps_text;
 

@@ -9,7 +9,20 @@ void Ball::init_Variables()
     ball_color = sf::Color(255, 255, 255);
 
     // Set Ball Speed
-    ball_speed = entity_speed;
+    this->ball_speed = entity_ball_speed;
+
+    // Sound Address
+    collision_sound_address = "assets/sounds/ball.wav";
+}
+
+// Initialzie Sounds
+void Ball::init_Sounds()
+{
+    // Init Sound Buffers
+
+    // Collision Sound
+    collision_sound_buffer = new sf::SoundBuffer(collision_sound_address);
+    collision_sound = new sf::Sound(*collision_sound_buffer);
 }
 
 // Initialize Randomize
@@ -58,16 +71,18 @@ void Ball::moveBall(float delta_time)
     random_after_collide->randomizeFloat(0, 25);
 
     // Move Ball
-    this->move(sf::Vector2f{ball_speed * delta_time, ball_angle});
+    this->move(sf::Vector2f{this->ball_speed * delta_time, ball_angle});
 
     // To detect Collision with top and bottom screen of the window
     if (this->getPosition().y - ball_radius <= 0.0f)
     {
+        collision_sound->play();
         ball_angle *= -1;
         this->setPosition(sf::Vector2f{this->getPosition().x, ball_radius + 0.1f});
     }
     else if (this->getPosition().y + ball_radius >= window_size.y)
     {
+        collision_sound->play();
         ball_angle *= -1;
         this->setPosition(sf::Vector2f{this->getPosition().x, window_size.y - ball_radius - 0.1f});
     }
@@ -76,11 +91,13 @@ void Ball::moveBall(float delta_time)
     if (this->getPosition().x - ball_radius <= 0.0f)
     {
         enemy_score++;
+        initBallAngle();
         this->setPosition(sf::Vector2f{window_size} / 2.0f);
     }
-    else if (this->getPosition().x + ball_radius >= 0.0f)
+    else if (this->getPosition().x + ball_radius >= window_size.x)
     {
         player_score++;
+        initBallAngle();
         this->setPosition(sf::Vector2f{window_size} / 2.0f);
     }
 
@@ -98,6 +115,7 @@ void Ball::moveBall(float delta_time)
         {
             ball_angle = sf::degrees(180) - ball_angle - sf::degrees(random_after_collide->getRandomFloat());
         }
+        collision_sound->play();
 
         this->setPosition(sf::Vector2f{player_position.x + player_size.x + ball_radius + 0.1f, this->getPosition().y});
     }
@@ -116,6 +134,7 @@ void Ball::moveBall(float delta_time)
         {
             ball_angle = sf::degrees(180) - ball_angle - sf::degrees(random_after_collide->getRandomFloat());
         }
+        collision_sound->play();
 
         this->setPosition(sf::Vector2f{enemy_position.x - enemy_size.x - ball_radius - 0.1f, this->getPosition().y});
     }
@@ -125,6 +144,7 @@ void Ball::moveBall(float delta_time)
 Ball::Ball()
 {
     init_Variables();
+    init_Sounds();
     initRandomize();
     initBallAngle();
     init_Ball();
@@ -133,6 +153,8 @@ Ball::Ball()
 // Destructor
 Ball::~Ball()
 {
+    delete collision_sound;
+    delete collision_sound_buffer;
     delete random_init_angle;
 }
 

@@ -13,6 +13,7 @@ private:
 
     // Init Functions
     void init_Variables();
+    void init_Sounds();
     void initRandomize();
     void init_Ball();
     void initBallAngle();
@@ -56,4 +57,11 @@ private:
     // Enemy
     sf::Vector2f enemy_size;
     sf::Vector2f enemy_position;
+
+    // Sound Address
+    std::string collision_sound_address;
+
+    // Sounds
+    sf::SoundBuffer *collision_sound_buffer;
+    sf::Sound *collision_sound;
 };

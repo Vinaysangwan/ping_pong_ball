@@ -44,6 +44,9 @@ private:
     // Ball
     Ball *ball;
 
+    // Texts
+    std::string font_address;
+
     Texts *player_score_text;
     Texts *enemy_score_text;
 };

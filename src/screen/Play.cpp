@@ -7,6 +7,7 @@
 // Initialize Variables
 void Play::initVariables()
 {
+    font_address = "assets/fonts/Roboto-Regular.ttf";
 }
 
 void Play::initEntity()
@@ -26,17 +27,21 @@ void Play::initTexts()
 {
     // Player Score Text
     player_score_text = new Texts("YOU: 0", font_address);
-    player_score_text->setPosition(sf::Vector2f{window_size.x / 2.0f - player_score_text->getGlobalBounds().size.x - 10.0f, 20.0f});
+    player_score_text->setCharacterSize(20.0f);
+    player_score_text->setPosition(sf::Vector2f{window_size.x / 2.0f - player_score_text->getGlobalBounds().size.x - 50.0f, 20.0f});
 
     // Enemy Score Text
     enemy_score_text = new Texts("COMPUTER: 0", font_address);
-    enemy_score_text->setPosition(sf::Vector2f{window_size.x / 2.0f + 10.0f, 2.0f});
+    enemy_score_text->setCharacterSize(20.0f);
+    enemy_score_text->setPosition(sf::Vector2f{window_size.x / 2.0f + 50.0f, 20.0f});
 }
 
 // New Game
 void Play::newGame()
 {
     initEntity();
+    player_score = 0;
+    enemy_score = 0;
     initTexts();
 }
 

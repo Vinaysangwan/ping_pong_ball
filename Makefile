@@ -3,7 +3,7 @@ CXX = g++
 CXXFLAGS = -I./include -std=c++23 -Wall -Wextra -O3
 
 # Linker
-LDFLAGS = -L./lib -lsfml-window -lsfml-system -lsfml-graphics
+LDFLAGS = -L./lib -lsfml-window -lsfml-system -lsfml-graphics -lsfml-audio
 
 # Directories
 SRC_DIR = src

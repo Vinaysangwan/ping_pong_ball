@@ -34,6 +34,8 @@ private:
     sf::Vector2f mouse_position;
 
     // Texts
+    std::string font_address;
+
     Texts *home_text;
 
     // Buttons
