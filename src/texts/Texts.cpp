@@ -43,3 +43,10 @@ void Texts::stream_string_int(std::string str, int num)
     sstream << str << num;
     this->setString(sstream.str());
 }
+
+void Texts::stream_int_string(int num, std::string str)
+{
+    std::stringstream sstream;
+    sstream << num << str;
+    this->setString(sstream.str());
+}

@@ -13,6 +13,10 @@ enum GameMode
 extern GameMode e_GameMode;
 extern sf::Vector2u window_size;
 
+extern const sf::Vector2f entity_enemy_size;
+extern const sf::Vector2f entity_player_size;
+extern const float entity_ball_radius;
+
 extern const float entity_speed;
 extern const float entity_ball_speed;
 

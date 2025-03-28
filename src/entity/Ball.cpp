@@ -1,5 +1,10 @@
 #include "Ball.hpp"
 
+// ********************************************************************************************************
+// ************************************************* Private Functions ************************************
+// ********************************************************************************************************
+
+// Initialzie Variables
 void Ball::init_Variables()
 {
     // Set Ball Radius
@@ -50,8 +55,7 @@ void Ball::init_Ball()
 // Initialize Ball Angle
 void Ball::initBallAngle()
 {
-    // Set Random Ball Angle between (45 - 135)
-
+    // Set Random Ball Angle between (45 - 135 || 225 - 315)
     float random_angle = 0.0f;
 
     do
@@ -73,6 +77,19 @@ void Ball::moveBall(float delta_time)
     // Move Ball
     this->move(sf::Vector2f{this->ball_speed * delta_time, ball_angle});
 
+    // Collision With Window
+    windowCollision();
+
+    // Collision with the Player
+    playerCollision();
+
+    // Collision with the Enemy
+    enemyCollision();
+}
+
+// Ball Collision WIth Window
+void Ball::windowCollision()
+{
     // To detect Collision with top and bottom screen of the window
     if (this->getPosition().y - ball_radius <= 0.0f)
     {
@@ -100,11 +117,14 @@ void Ball::moveBall(float delta_time)
         initBallAngle();
         this->setPosition(sf::Vector2f{window_size} / 2.0f);
     }
+}
 
-    // Collision with the Player
-    if (this->getPosition().y + ball_radius >= player_position.y - player_size.y &&
-        this->getPosition().y - ball_radius <= player_position.y + player_size.y &&
-        this->getPosition().x - ball_radius <= player_position.x + player_size.x &&
+// Ball Collision With Player
+void Ball::playerCollision()
+{
+    if (this->getPosition().y + ball_radius >= player_position.y - entity_player_size.y / 2.0f &&
+        this->getPosition().y - ball_radius <= player_position.y + entity_player_size.y / 2.0f &&
+        this->getPosition().x - ball_radius <= player_position.x + entity_player_size.x / 2.0f &&
         this->getPosition().x - ball_radius >= player_position.x)
     {
         if (this->getPosition().y > player_position.y)
@@ -117,13 +137,16 @@ void Ball::moveBall(float delta_time)
         }
         collision_sound->play();
 
-        this->setPosition(sf::Vector2f{player_position.x + player_size.x + ball_radius + 0.1f, this->getPosition().y});
+        this->setPosition(sf::Vector2f{player_position.x + entity_player_size.x + ball_radius + 0.1f, this->getPosition().y});
     }
+}
 
-    // Collision with the Enemy
-    if (this->getPosition().y + ball_radius >= enemy_position.y - enemy_size.y &&
-        this->getPosition().y - ball_radius <= enemy_position.y + enemy_size.y &&
-        this->getPosition().x - ball_radius >= enemy_position.x - enemy_size.x &&
+// Ball Collision With Enemy
+void Ball::enemyCollision()
+{
+    if (this->getPosition().y + ball_radius >= enemy_position.y - entity_enemy_size.y / 2.0f &&
+        this->getPosition().y - ball_radius <= enemy_position.y + entity_enemy_size.y / 2.0f &&
+        this->getPosition().x - ball_radius >= enemy_position.x - entity_enemy_size.x / 2.0f &&
         this->getPosition().x - ball_radius <= enemy_position.x)
     {
         if (this->getPosition().y > enemy_position.y)
@@ -136,9 +159,13 @@ void Ball::moveBall(float delta_time)
         }
         collision_sound->play();
 
-        this->setPosition(sf::Vector2f{enemy_position.x - enemy_size.x - ball_radius - 0.1f, this->getPosition().y});
+        this->setPosition(sf::Vector2f{enemy_position.x - entity_enemy_size.x - ball_radius - 0.1f, this->getPosition().y});
     }
 }
+
+// ********************************************************************************************************
+// ************************************************* Public Functions *************************************
+// ********************************************************************************************************
 
 // Constructor
 Ball::Ball()
@@ -165,18 +192,13 @@ void Ball::update_Ball(float delta_time)
     moveBall(delta_time);
 }
 
-// Get Entity Size(Player Size, Enemy Size)
-void Ball::getEntitySize(sf::Vector2f player_size, sf::Vector2f enemy_size)
-{
-    this->player_size = player_size;
-    this->enemy_size = enemy_size;
-}
-
+// Function to get Player Position
 void Ball::getPlayerPosition(sf::Vector2f player_position)
 {
     this->player_position = player_position;
 }
 
+// Function to get Enemy Position
 void Ball::getEnemyPosition(sf::Vector2f enemy_position)
 {
     this->enemy_position = enemy_position;

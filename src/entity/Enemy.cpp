@@ -1,10 +1,14 @@
 #include "Enemy.hpp"
 
+// ********************************************************************************************************
+// ************************************************* Private Functions ************************************
+// ********************************************************************************************************
+
+// Initialize Variables
 void Enemy::init_Variables()
 {
     // Set Enemy Size
-    enemy_size.x = 30.0f;  // Width
-    enemy_size.y = 120.0f; // Height
+    enemy_size = entity_enemy_size;
 
     // Set Enemy Color
     enemy_color = sf::Color(0x0CAFFF);
@@ -19,6 +23,7 @@ void Enemy::init_Variables()
     enemy_time = new sf::Clock();
 }
 
+// Initialize Enemy
 void Enemy::init_Enemy()
 {
     // Initialize the Enemy & Set Outline Thickness
@@ -34,6 +39,7 @@ void Enemy::init_Enemy()
     this->setOutlineColor(sf::Color(0, 0, 0));
 }
 
+// Enemy Movement
 void Enemy::moveEnemy(float delta_time)
 {
     // Enemy Only move when between the top and bottom window
@@ -46,11 +52,11 @@ void Enemy::moveEnemy(float delta_time)
     if (enemy_time->getElapsedTime() > enemy_reaction_time)
     {
         enemy_time->restart();
-        if (ball_position.y + ball_radius <= this->getPosition().y)
+        if (ball_position.y + entity_ball_radius <= this->getPosition().y)
         {
             enemy_speed = -entity_speed;
         }
-        else if (ball_position.y - ball_radius >= this->getPosition().y)
+        else if (ball_position.y - entity_ball_radius >= this->getPosition().y)
         {
             enemy_speed = entity_speed;
         }
@@ -61,28 +67,31 @@ void Enemy::moveEnemy(float delta_time)
     }
 }
 
+// ********************************************************************************************************
+// ************************************************* Public Functions *************************************
+// ********************************************************************************************************
+
+// Constructor
 Enemy::Enemy()
 {
     init_Variables();
     init_Enemy();
 }
 
+// Destructor
 Enemy::~Enemy()
 {
     delete enemy_time;
 }
 
+// Update Function
 void Enemy::update_Enemy(float delta_time)
 {
 
     moveEnemy(delta_time);
 }
 
-void Enemy::getBallRadius(float ball_radius)
-{
-    this->ball_radius = ball_radius;
-}
-
+// Function To get Ball Position
 void Enemy::getBallPosition(sf::Vector2f ball_position)
 {
     this->ball_position = ball_position;

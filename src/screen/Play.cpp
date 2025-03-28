@@ -26,12 +26,12 @@ void Play::initEntity()
 void Play::initTexts()
 {
     // Player Score Text
-    player_score_text = new Texts("YOU: 0", font_address);
+    player_score_text = new Texts("0 :You", font_address);
     player_score_text->setCharacterSize(20.0f);
     player_score_text->setPosition(sf::Vector2f{window_size.x / 2.0f - player_score_text->getGlobalBounds().size.x - 50.0f, 20.0f});
 
     // Enemy Score Text
-    enemy_score_text = new Texts("COMPUTER: 0", font_address);
+    enemy_score_text = new Texts("Computer: 0", font_address);
     enemy_score_text->setCharacterSize(20.0f);
     enemy_score_text->setPosition(sf::Vector2f{window_size.x / 2.0f + 50.0f, 20.0f});
 }
@@ -70,9 +70,6 @@ Play::Play()
     initVariables();
     initEntity();
     initTexts();
-
-    enemy->getBallRadius(ball->getRadius());
-    ball->getEntitySize(player->getSize() / 2.0f, enemy->getSize() / 2.0f);
 }
 
 // Destructor
@@ -99,8 +96,8 @@ void Play::update_Play(float delta_time)
     ball->getEnemyPosition(enemy->getPosition());
     ball->update_Ball(delta_time);
 
-    player_score_text->stream_string_int("YOU: ", player_score);
-    enemy_score_text->stream_string_int("COMPUTER: ", enemy_score);
+    player_score_text->stream_int_string(player_score, " :You");
+    enemy_score_text->stream_string_int("Computer: ", enemy_score);
 }
 
 // Render Function

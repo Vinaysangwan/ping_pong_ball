@@ -23,6 +23,7 @@ public:
     void stream_string(std::string str);
     void stream_string_float(std::string str, float num);
     void stream_string_int(std::string str, int num);
+    void stream_int_string(int num, std::string str);
 
 private:
     // Private Members

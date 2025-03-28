@@ -23,7 +23,6 @@ public:
     // Main Enemy Functions
     void update_Enemy(float delta_time);
 
-    void getBallRadius(float ball_radius);
     void getBallPosition(sf::Vector2f ball_position);
 
 private:
@@ -36,7 +35,6 @@ private:
     float enemy_speed;
 
     // Ball
-    float ball_radius;
     sf::Vector2f ball_position;
 
     sf::Time enemy_reaction_time;
