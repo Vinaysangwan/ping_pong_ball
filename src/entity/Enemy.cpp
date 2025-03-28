@@ -10,7 +10,13 @@ void Enemy::init_Variables()
     enemy_color = sf::Color(0x0CAFFF);
 
     // Enemy Speed
-    enemy_speed = 300.0f;
+    enemy_speed = entity_speed;
+
+    // Enemy Reaction Time
+    enemy_reaction_time = sf::seconds(0.1f);
+
+    // Enemy Time
+    enemy_time = new sf::Clock();
 }
 
 void Enemy::init_Enemy()
@@ -28,26 +34,30 @@ void Enemy::init_Enemy()
     this->setOutlineColor(sf::Color(0, 0, 0));
 }
 
-void Enemy::moveEnemy()
+void Enemy::moveEnemy(float delta_time)
 {
-    if (this->getPosition().y - enemy_size.y / 2.0f <= 0.0f)
+    // Enemy Only move when between the top and bottom window
+    if (((enemy_speed < 0.0f) && (this->getPosition().y - enemy_size.y / 2.0f > 5.0f)) ||
+        ((enemy_speed > 0.0f) && (this->getPosition().y + enemy_size.y / 2.0f < window_size.y - 5.0f)))
     {
-        this->setPosition(sf::Vector2f{this->getPosition().x, 0.1f + enemy_size.y / 2.0f});
-        return;
-    }
-    else if (this->getPosition().y + enemy_size.y / 2.0f >= window_size.y)
-    {
-        this->setPosition(sf::Vector2f{this->getPosition().x, window_size.y - 0.1f - enemy_size.y / 2.0f});
-        return;
+        this->move(sf::Vector2f{0.0f, enemy_speed * delta_time});
     }
 
-    if (ball_position.y + ball_radius <= this->getPosition().y - enemy_size.y / 2.0f + 5.0f)
+    if (enemy_time->getElapsedTime() > enemy_reaction_time)
     {
-        this->move(sf::Vector2f{0.0f, -enemy_speed * time.getDeltaTime()});
-    }
-    else if (ball_position.y - ball_radius >= this->getPosition().y + enemy_size.y / 2.0f - 5.0f)
-    {
-        this->move(sf::Vector2f{0.0f, enemy_speed * time.getDeltaTime()});
+        enemy_time->restart();
+        if (ball_position.y + ball_radius <= this->getPosition().y)
+        {
+            enemy_speed = -entity_speed;
+        }
+        else if (ball_position.y - ball_radius >= this->getPosition().y)
+        {
+            enemy_speed = entity_speed;
+        }
+        else
+        {
+            enemy_speed = 0.0f;
+        }
     }
 }
 
@@ -59,13 +69,13 @@ Enemy::Enemy()
 
 Enemy::~Enemy()
 {
+    delete enemy_time;
 }
 
-void Enemy::update_Enemy()
+void Enemy::update_Enemy(float delta_time)
 {
-    time.nextDeltaTime();
 
-    moveEnemy();
+    moveEnemy(delta_time);
 }
 
 void Enemy::getBallRadius(float ball_radius)

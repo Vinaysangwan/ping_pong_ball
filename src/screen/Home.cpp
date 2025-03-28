@@ -7,9 +7,6 @@
 // Initialize Variables
 void Home::initVariables()
 {
-    // Set Font Address
-    font_address = "assets/fonts/Roboto-Regular.ttf";
-
     // Button size
     button_size = sf::Vector2f{150.0f, 50.0f};
 

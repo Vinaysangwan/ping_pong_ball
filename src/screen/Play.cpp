@@ -9,22 +9,35 @@ void Play::initVariables()
 {
 }
 
-// Initialize Player
-void Play::initPlayer()
+void Play::initEntity()
 {
+    // Player
     player = new Player();
-}
 
-// Initialize Enemy
-void Play::initEnemy()
-{
+    // Enemy
     enemy = new Enemy();
+
+    // Ball
+    ball = new Ball();
 }
 
-// Initialize Ball
-void Play::initBall()
+// Initialize Texts
+void Play::initTexts()
 {
-    ball = new Ball();
+    // Player Score Text
+    player_score_text = new Texts("YOU: 0", font_address);
+    player_score_text->setPosition(sf::Vector2f{window_size.x / 2.0f - player_score_text->getGlobalBounds().size.x - 10.0f, 20.0f});
+
+    // Enemy Score Text
+    enemy_score_text = new Texts("COMPUTER: 0", font_address);
+    enemy_score_text->setPosition(sf::Vector2f{window_size.x / 2.0f + 10.0f, 2.0f});
+}
+
+// New Game
+void Play::newGame()
+{
+    initEntity();
+    initTexts();
 }
 
 // Switch Game Mode
@@ -37,6 +50,7 @@ void Play::game_mode_switch()
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scancode::Escape))
     {
+        newGame();
         e_GameMode = home_screen;
     }
 }
@@ -49,12 +63,11 @@ void Play::game_mode_switch()
 Play::Play()
 {
     initVariables();
-    initPlayer();
-    initEnemy();
-    initBall();
+    initEntity();
+    initTexts();
 
     enemy->getBallRadius(ball->getRadius());
-    ball->getEntitySize(player->getSize(), enemy->getSize());
+    ball->getEntitySize(player->getSize() / 2.0f, enemy->getSize() / 2.0f);
 }
 
 // Destructor
@@ -63,21 +76,26 @@ Play::~Play()
     delete player;
     delete enemy;
     delete ball;
+    delete player_score_text;
+    delete enemy_score_text;
 }
 
 // Update Function
-void Play::update_Play()
+void Play::update_Play(float delta_time)
 {
     game_mode_switch();
 
-    player->update_Player();
+    player->update_Player(delta_time);
 
     enemy->getBallPosition(ball->getPosition());
-    enemy->update_Enemy();
+    enemy->update_Enemy(delta_time);
 
     ball->getPlayerPosition(player->getPosition());
     ball->getEnemyPosition(enemy->getPosition());
-    ball->update_Ball();
+    ball->update_Ball(delta_time);
+
+    player_score_text->stream_string_int("YOU: ", player_score);
+    enemy_score_text->stream_string_int("COMPUTER: ", enemy_score);
 }
 
 // Render Function
@@ -86,4 +104,7 @@ void Play::render_Play(sf::RenderWindow &window)
     window.draw(*player);
     window.draw(*enemy);
     window.draw(*ball);
+
+    window.draw(*player_score_text);
+    window.draw(*enemy_score_text);
 }

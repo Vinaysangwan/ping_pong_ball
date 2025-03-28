@@ -30,7 +30,14 @@ void Texts::stream_string(std::string str)
     this->setString(str);
 }
 
-void Texts::stream_string_num(std::string str, float num)
+void Texts::stream_string_float(std::string str, float num)
+{
+    std::stringstream sstream;
+    sstream << str << num;
+    this->setString(sstream.str());
+}
+
+void Texts::stream_string_int(std::string str, int num)
 {
     std::stringstream sstream;
     sstream << str << num;

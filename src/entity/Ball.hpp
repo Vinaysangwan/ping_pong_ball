@@ -1,7 +1,10 @@
 #pragma once
 
+#include <cmath>
+
 #include "../common.hpp"
 #include "../game_manager/GameManager.hpp"
+#include "../randomize/Randomize.hpp"
 
 class Ball : public sf::CircleShape
 {
@@ -10,11 +13,11 @@ private:
 
     // Init Functions
     void init_Variables();
+    void initRandomize();
     void init_Ball();
+    void initBallAngle();
 
-    void moveBall();
-
-    bool detectCollision() const;
+    void moveBall(float delta_time);
 
 public:
     // Public Function
@@ -23,7 +26,7 @@ public:
     ~Ball();
 
     // Main Ball Functions
-    void update_Ball();
+    void update_Ball(float delta_time);
 
     void getEntitySize(sf::Vector2f player_size, sf::Vector2f enemy_size);
 
@@ -39,6 +42,12 @@ private:
     sf::Color ball_color;
 
     float ball_speed;
+
+    sf::Angle ball_angle;
+
+    // Randomize
+    Randomize *random_init_angle;
+    Randomize *random_after_collide;
 
     // Player
     sf::Vector2f player_size;

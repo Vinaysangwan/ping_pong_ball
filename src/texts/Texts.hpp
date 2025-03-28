@@ -21,7 +21,8 @@ public:
 
     // Main Texts Functions
     void stream_string(std::string str);
-    void stream_string_num(std::string str, float num);
+    void stream_string_float(std::string str, float num);
+    void stream_string_int(std::string str, int num);
 
 private:
     // Private Members

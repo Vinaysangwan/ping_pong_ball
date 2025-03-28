@@ -55,6 +55,14 @@
     "streambuf": "cpp",
     "text_encoding": "cpp",
     "typeinfo": "cpp",
-    "variant": "cpp"
-  }
+    "variant": "cpp",
+    "unordered_set": "cpp"
+  },
+  "makefile.launchConfigurations": [
+    {
+      "cwd": "c:\\coding\\SFML_Projects\\VScode\\projects\\ping_pong_ball",
+      "binaryPath": "c:\\coding\\SFML_Projects\\VScode\\projects\\ping_pong_ball\\main.exe",
+      "binaryArgs": []
+    }
+  ]
 }

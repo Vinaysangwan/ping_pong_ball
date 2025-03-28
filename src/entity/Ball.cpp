@@ -9,7 +9,14 @@ void Ball::init_Variables()
     ball_color = sf::Color(255, 255, 255);
 
     // Set Ball Speed
-    ball_speed = 300.0f;
+    ball_speed = entity_speed;
+}
+
+// Initialize Randomize
+void Ball::initRandomize()
+{
+    // Initial Random Angle for the ball
+    random_init_angle = new Randomize();
 }
 
 void Ball::init_Ball()
@@ -20,38 +27,123 @@ void Ball::init_Ball()
 
     // Set Ball Origin & Position
     this->setOrigin(sf::Vector2f{this->getRadius(), this->getRadius()});
-    this->setPosition(sf::Vector2f{400.0f, 300.0f});
+    this->setPosition(sf::Vector2f{window_size} / 2.0f);
 
     // Apply Ball Color
     this->setFillColor(ball_color);
     this->setOutlineColor(sf::Color(0, 0, 0));
 }
 
-void Ball::moveBall()
+// Initialize Ball Angle
+void Ball::initBallAngle()
 {
-    this->move(sf::Vector2f{0.0f, 1.0f});
+    // Set Random Ball Angle between (45 - 135)
+
+    float random_angle = 0.0f;
+
+    do
+    {
+        random_init_angle->randomizeFloat(0, 360);
+        random_angle = random_init_angle->getRandomFloat();
+    } while (std::abs(std::cos(random_angle)) <= 0.707);
+
+    ball_angle = sf::degrees(random_angle);
 }
 
-bool Ball::detectCollision() const
+// Move Ball
+void Ball::moveBall(float delta_time)
 {
-    return false;
+    // Init Random When Collision addition
+    random_after_collide = new Randomize();
+    random_after_collide->randomizeFloat(0, 25);
+
+    // Move Ball
+    this->move(sf::Vector2f{ball_speed * delta_time, ball_angle});
+
+    // To detect Collision with top and bottom screen of the window
+    if (this->getPosition().y - ball_radius <= 0.0f)
+    {
+        ball_angle *= -1;
+        this->setPosition(sf::Vector2f{this->getPosition().x, ball_radius + 0.1f});
+    }
+    else if (this->getPosition().y + ball_radius >= window_size.y)
+    {
+        ball_angle *= -1;
+        this->setPosition(sf::Vector2f{this->getPosition().x, window_size.y - ball_radius - 0.1f});
+    }
+
+    // When Collide with left & Right screen
+    if (this->getPosition().x - ball_radius <= 0.0f)
+    {
+        enemy_score++;
+        this->setPosition(sf::Vector2f{window_size} / 2.0f);
+    }
+    else if (this->getPosition().x + ball_radius >= 0.0f)
+    {
+        player_score++;
+        this->setPosition(sf::Vector2f{window_size} / 2.0f);
+    }
+
+    // Collision with the Player
+    if (this->getPosition().y + ball_radius >= player_position.y - player_size.y &&
+        this->getPosition().y - ball_radius <= player_position.y + player_size.y &&
+        this->getPosition().x - ball_radius <= player_position.x + player_size.x &&
+        this->getPosition().x - ball_radius >= player_position.x)
+    {
+        if (this->getPosition().y > player_position.y)
+        {
+            ball_angle = sf::degrees(180) - ball_angle + sf::degrees(random_after_collide->getRandomFloat());
+        }
+        else
+        {
+            ball_angle = sf::degrees(180) - ball_angle - sf::degrees(random_after_collide->getRandomFloat());
+        }
+
+        this->setPosition(sf::Vector2f{player_position.x + player_size.x + ball_radius + 0.1f, this->getPosition().y});
+    }
+
+    // Collision with the Enemy
+    if (this->getPosition().y + ball_radius >= enemy_position.y - enemy_size.y &&
+        this->getPosition().y - ball_radius <= enemy_position.y + enemy_size.y &&
+        this->getPosition().x - ball_radius >= enemy_position.x - enemy_size.x &&
+        this->getPosition().x - ball_radius <= enemy_position.x)
+    {
+        if (this->getPosition().y > enemy_position.y)
+        {
+            ball_angle = sf::degrees(180) - ball_angle + sf::degrees(random_after_collide->getRandomFloat());
+        }
+        else
+        {
+            ball_angle = sf::degrees(180) - ball_angle - sf::degrees(random_after_collide->getRandomFloat());
+        }
+
+        this->setPosition(sf::Vector2f{enemy_position.x - enemy_size.x - ball_radius - 0.1f, this->getPosition().y});
+    }
 }
 
+// Constructor
 Ball::Ball()
 {
     init_Variables();
+    initRandomize();
+    initBallAngle();
     init_Ball();
 }
 
+// Destructor
 Ball::~Ball()
 {
+    delete random_init_angle;
 }
 
-void Ball::update_Ball()
+// Update Ball
+void Ball::update_Ball(float delta_time)
 {
-    moveBall();
+
+    moveBall(delta_time);
 }
 
+// Get Entity Size(Player Size, Enemy Size)
 void Ball::getEntitySize(sf::Vector2f player_size, sf::Vector2f enemy_size)
 {
     this->player_size = player_size;

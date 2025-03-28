@@ -34,7 +34,7 @@ run: $(EXE)
 
 # Debug
 debug:
-	gbd ./$(EXE)
+	gdb ./$(EXE)
 
 # Clean output
 clean:

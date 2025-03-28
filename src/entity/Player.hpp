@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../common.hpp"
-#include "../times/Times.hpp"
 #include "../game_manager/GameManager.hpp"
 
 class Player : public sf::RectangleShape
@@ -23,13 +22,10 @@ public:
     ~Player();
 
     // Main Player Functions
-    void update_Player();
+    void update_Player(float delta_time);
 
 private:
     // Private Members
-
-    // Times
-    Times time;
 
     // Player Variable
     sf::Vector2f player_size;

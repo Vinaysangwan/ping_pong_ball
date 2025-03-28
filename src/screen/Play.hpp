@@ -1,5 +1,7 @@
 #pragma once
 
+#include "../texts/Texts.hpp"
+
 // Include Entities
 #include "../entity/Player.hpp"
 #include "../entity/Enemy.hpp"
@@ -12,9 +14,10 @@ private:
 
     // Init Functions
     void initVariables();
-    void initPlayer();
-    void initEnemy();
-    void initBall();
+    void initEntity();
+    void initTexts();
+
+    void newGame();
 
     void game_mode_switch();
 
@@ -26,7 +29,7 @@ public:
     ~Play();
 
     // Main Play Functions
-    void update_Play();
+    void update_Play(float delta_time);
     void render_Play(sf::RenderWindow &window);
 
 private:
@@ -40,4 +43,7 @@ private:
 
     // Ball
     Ball *ball;
+
+    Texts *player_score_text;
+    Texts *enemy_score_text;
 };

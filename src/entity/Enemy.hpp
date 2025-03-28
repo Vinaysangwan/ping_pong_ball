@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../common.hpp"
-#include "../times/Times.hpp"
 #include "../game_manager/GameManager.hpp"
 
 class Enemy : public sf::RectangleShape
@@ -13,7 +12,7 @@ private:
     void init_Variables();
     void init_Enemy();
 
-    void moveEnemy();
+    void moveEnemy(float delta_time);
 
 public:
     // Public Functions
@@ -22,7 +21,7 @@ public:
     ~Enemy();
 
     // Main Enemy Functions
-    void update_Enemy();
+    void update_Enemy(float delta_time);
 
     void getBallRadius(float ball_radius);
     void getBallPosition(sf::Vector2f ball_position);
@@ -40,6 +39,6 @@ private:
     float ball_radius;
     sf::Vector2f ball_position;
 
-    // Times
-    Times time;
+    sf::Time enemy_reaction_time;
+    sf::Clock *enemy_time;
 };

@@ -33,7 +33,7 @@ void Game::init_Window()
 // Init FPS Text
 void Game::initFPSText()
 {
-    this->fps_text = new Texts("FPS: 0.00000", "assets/fonts/Roboto-Regular.ttf");
+    this->fps_text = new Texts("FPS: 0.00000", font_address);
     this->fps_text->setPosition(sf::Vector2f{10.0f, 10.0f});
 }
 
@@ -116,7 +116,7 @@ void Game::update()
     mouse_position = sf::Mouse::getPosition(*window);
 
     // Update FPS Text
-    this->fps_text->stream_string_num("FPS: ", 1.0f / this->time.getDeltaTime());
+    this->fps_text->stream_string_float("FPS: ", 1.0f / this->time.getDeltaTime());
 
     this->poll_Event();
 
@@ -128,7 +128,7 @@ void Game::update()
         break;
 
     case play_screen:
-        this->play->update_Play();
+        this->play->update_Play(time.getDeltaTime());
         break;
 
     case quit:
